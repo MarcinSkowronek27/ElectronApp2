@@ -43,22 +43,21 @@ class App extends React.Component {
       }
     };
 
-    // const interval = setInterval(step, 1000);
-
+    // const intval = setInterval(step, 1000);
+    
     const startTimer = () => {
       this.setState({
         status: 'work',
         timer: setInterval(step, 1000),
       })
     };
-
+    
     const stopTimer = () => {
-      clearInterval(this.state.timer);
       this.setState({
         status: 'off',
         time: 0,
-        timer: setInterval(step, 1000),
-      });
+      }),
+      clearInterval(this.state.timer);
     };
 
     const closeApp = () => {
