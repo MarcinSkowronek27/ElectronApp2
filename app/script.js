@@ -5,13 +5,12 @@ class App extends React.Component {
 
   state = {
     status: 'off',
-    time: 5,
+    time: 1200,
     timer: null,
   };
 
 
   render() {
-
 
     const { status, time } = this.state;
 
@@ -28,7 +27,6 @@ class App extends React.Component {
       this.setState({
         time: newTime,
       });
-
       if (newTime === 0 && this.state.status === 'work') {
         this.setState({
           status: 'rest',
@@ -43,21 +41,19 @@ class App extends React.Component {
       }
     };
 
-    // const intval = setInterval(step, 1000);
-    
     const startTimer = () => {
       this.setState({
         status: 'work',
         timer: setInterval(step, 1000),
       })
     };
-    
+
     const stopTimer = () => {
       this.setState({
         status: 'off',
-        time: 0,
+        time: 1200,
       }),
-      clearInterval(this.state.timer);
+        clearInterval(this.state.timer);
     };
 
     const closeApp = () => {
