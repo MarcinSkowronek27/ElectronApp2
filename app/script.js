@@ -29,13 +29,13 @@ class App extends React.Component {
         time: newTime,
       });
 
-      if (newTime === 0 && this.state.status === 'work') {
+      if (newTime <= 0 && this.state.status === 'work') {
         this.setState({
           status: 'rest',
           time: 20,
         });
       }
-      else if (newTime === 0 && this.state.status === 'rest') {
+      else if (newTime <= 0 && this.state.status === 'rest') {
         this.setState({
           status: 'work',
           time: 1200,
@@ -48,6 +48,20 @@ class App extends React.Component {
         status: 'work',
         timer: setInterval(step, 1000),
       })
+    };
+
+    const stopTimer = () => {
+      let stop = this.state.timer;
+      this.setState({
+        status: 'off',
+        time: 0,
+        timer: clearInterval(stop),
+      }, ()=> console.log(this.state));
+      
+    };
+
+    const closeApp = () => {
+      window.close();
     };
 
     // if (this.state.status === 'off') {
@@ -72,8 +86,14 @@ class App extends React.Component {
             return startTimer();
           }}>Start</button>
         }
-        {(status !== 'off') && <button className="btn">Stop</button>}
-        <button className="btn btn-close">X</button>
+        {(status !== 'off') && <button className="btn" onClick={event => {
+          event.preventDefault();
+          return stopTimer();
+        }}>Stop</button>}
+        <button className="btn btn-close" onClick={event => {
+            event.preventDefault();
+            return closeApp();
+          }}>X</button>
       </div >
     )
   }
