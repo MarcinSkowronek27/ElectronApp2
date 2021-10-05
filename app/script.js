@@ -58,7 +58,6 @@ class App extends React.Component {
         status: 'off',
         time: 0,
         timer: setInterval(step, 1000),
-        intervalId: this.state.timer,
       });
     };
 
